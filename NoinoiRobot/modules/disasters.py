@@ -30,14 +30,13 @@ ELEVATED_USERS_FILE = os.path.join(os.getcwd(), "NoinoiRobot/elevated_users.json
 def check_user_id(user_id: int, context: CallbackContext) -> Optional[str]:
     bot = context.bot
     if not user_id:
-        reply = "That...is a chat! baka ka omae?"
+        return "That...is a chat! baka ka omae?"
 
     elif user_id == bot.id:
-        reply = "This does not work that way."
+        return "This does not work that way."
 
     else:
-        reply = None
-    return reply
+        return None
 
 
 # This can serve as a deeplink example.
@@ -64,8 +63,7 @@ def addsudo(update: Update, context: CallbackContext) -> str:
     user_member = bot.getChat(user_id)
     rt = ""
 
-    reply = check_user_id(user_id, bot)
-    if reply:
+    if reply := check_user_id(user_id, bot):
         message.reply_text(reply)
         return ""
 
@@ -106,7 +104,7 @@ def addsudo(update: Update, context: CallbackContext) -> str:
     )
 
     if chat.type != "private":
-        log_message = f"<b>{html.escape(chat.title)}:</b>\n" + log_message
+        log_message = f"<b>{html.escape(chat.title)}:</b>\n{log_message}"
 
     return log_message
 
@@ -126,8 +124,7 @@ def addsupport(
     user_member = bot.getChat(user_id)
     rt = ""
 
-    reply = check_user_id(user_id, bot)
-    if reply:
+    if reply := check_user_id(user_id, bot):
         message.reply_text(reply)
         return ""
 
@@ -155,8 +152,9 @@ def addsupport(
         json.dump(data, outfile, indent=4)
 
     update.effective_message.reply_text(
-        rt + f"\n{user_member.first_name} was added as a Demon Disaster!"
+        f"{rt}\n{user_member.first_name} was added as a Demon Disaster!"
     )
+
 
     log_message = (
         f"#SUPPORT\n"
@@ -165,7 +163,7 @@ def addsupport(
     )
 
     if chat.type != "private":
-        log_message = f"<b>{html.escape(chat.title)}:</b>\n" + log_message
+        log_message = f"<b>{html.escape(chat.title)}:</b>\n{log_message}"
 
     return log_message
 
@@ -182,8 +180,7 @@ def addwhitelist(update: Update, context: CallbackContext) -> str:
     user_member = bot.getChat(user_id)
     rt = ""
 
-    reply = check_user_id(user_id, bot)
-    if reply:
+    if reply := check_user_id(user_id, bot):
         message.reply_text(reply)
         return ""
 
@@ -221,7 +218,7 @@ def addwhitelist(update: Update, context: CallbackContext) -> str:
     )
 
     if chat.type != "private":
-        log_message = f"<b>{html.escape(chat.title)}:</b>\n" + log_message
+        log_message = f"<b>{html.escape(chat.title)}:</b>\n{log_message}"
 
     return log_message
 
@@ -238,8 +235,7 @@ def addtiger(update: Update, context: CallbackContext) -> str:
     user_member = bot.getChat(user_id)
     rt = ""
 
-    reply = check_user_id(user_id, bot)
-    if reply:
+    if reply := check_user_id(user_id, bot):
         message.reply_text(reply)
         return ""
 
@@ -282,7 +278,7 @@ def addtiger(update: Update, context: CallbackContext) -> str:
     )
 
     if chat.type != "private":
-        log_message = f"<b>{html.escape(chat.title)}:</b>\n" + log_message
+        log_message = f"<b>{html.escape(chat.title)}:</b>\n{log_message}"
 
     return log_message
 
@@ -298,8 +294,7 @@ def removesudo(update: Update, context: CallbackContext) -> str:
     user_id = extract_user(message, args)
     user_member = bot.getChat(user_id)
 
-    reply = check_user_id(user_id, bot)
-    if reply:
+    if reply := check_user_id(user_id, bot):
         message.reply_text(reply)
         return ""
 
@@ -341,8 +336,7 @@ def removesupport(update: Update, context: CallbackContext) -> str:
     user_id = extract_user(message, args)
     user_member = bot.getChat(user_id)
 
-    reply = check_user_id(user_id, bot)
-    if reply:
+    if reply := check_user_id(user_id, bot):
         message.reply_text(reply)
         return ""
 
@@ -384,8 +378,7 @@ def removewhitelist(update: Update, context: CallbackContext) -> str:
     user_id = extract_user(message, args)
     user_member = bot.getChat(user_id)
 
-    reply = check_user_id(user_id, bot)
-    if reply:
+    if reply := check_user_id(user_id, bot):
         message.reply_text(reply)
         return ""
 
@@ -426,8 +419,7 @@ def removetiger(update: Update, context: CallbackContext) -> str:
     user_id = extract_user(message, args)
     user_member = bot.getChat(user_id)
 
-    reply = check_user_id(user_id, bot)
-    if reply:
+    if reply := check_user_id(user_id, bot):
         message.reply_text(reply)
         return ""
 
@@ -583,100 +575,8 @@ dispatcher.add_handler(DEVLIST_HANDLER)
 
 __mod_name__ = "ᴅɪsᴀsᴛᴇʀ"
 
-__help__ = f"""
-𝗣𝗟𝗨𝗚𝗜𝗡𝗦 𝗙𝗥𝗢𝗠 𝗡𝗢𝗜𝗡𝗢𝗜 𝗕𝗢𝗧 📚
+__help__ = """\x1f𝗣𝗟𝗨𝗚𝗜𝗡𝗦 𝗙𝗥𝗢𝗠 𝗡𝗢𝗜𝗡𝗢𝗜 𝗕𝗢𝗧 📚\x1f\x1f *List all special users:*\x1f  ❍ /dragons*:* Lists all Dragon disasters\x1f  ❍ /demons*:* Lists all Demon disasters\x1f  ❍ /tigers*:* Lists all Tigers disasters\x1f  ❍ /wolves*:* Lists all Wolf disasters\x1f  ❍ /heroes*:* Lists all Hero Association members\x1f  ❍ /adddragon*:* Adds a user to Dragon\x1f  ❍ /adddemon*:* Adds a user to Demon\x1f  ❍ /addtiger*:* Adds a user to Tiger\x1f  ❍ /addwolf*:* Adds a user to Wolf\x1f  ❍ `Add dev doesnt exist, devs should know how to add themselves`\x1f\x1f *Ping:*\x1f  ❍ /ping*:* gets ping time of bot to telegram server\x1f  ❍ /pingall*:* gets all listed ping times\x1f\x1f *Broadcast: (Bot owner only)*\x1f *Note:* This supports basic markdown\x1f  ❍ /broadcastall*:* Broadcasts everywhere\x1f  ❍ /broadcastusers*:* Broadcasts too all users\x1f  ❍ /broadcastgroups*:* Broadcasts too all groups\x1f\x1f *Groups Info:*\x1f  ❍ /groups*:* List the groups with Name, ID, members count as a txt#  \x1f  ❍ /leave <ID>*:* Leave the group, ID must have hyphen\x1f  ❍ /stats*:* Shows overall bot stats\x1f  ❍ /getchats*:* Gets a list of group names the user has been seen in. Bot owner only\x1f  ❍ /ginfo username/link/ID*:* Pulls info panel for entire group\x1f\x1f *Access control:* \x1f  ❍ /ignore*:* Blacklists a user from using the bot entirely\x1f  ❍ /lockdown <off/on>*:* Toggles bot adding to groups\x1f  ❍ /notice*:* Removes user from blacklist\x1f  ❍ /ignoredlist*:* Lists ignored users\x1f\x1f *Speedtest:*\x1f  ❍ /speedtest*:* Runs a speedtest and gives you 2 options to choose from, text or image output\x1f\x1f *Module loading:*\x1f  ❍ /listmodules*:* Lists names of all modules\x1f  ❍ /load modulename*:* Loads the said module to memory without restarting.\x1f  ❍ /unload modulename*:* Loads the said module frommemory without restarting memory without restarting the bot \x1f\x1f *Remote commands:*\x1f  ❍ /rban*:* user group*:* Remote ban\x1f  ❍ /runban*:* user group*:* Remote un-ban\x1f  ❍ /rpunch*:* user group*:* Remote punch\x1f  ❍ /rmute*:* user group*:* Remote mute\x1f  ❍ /runmute*:* user group*:* Remote un-mute\x1f\x1f *Windows self hosted only:*\x1f  ❍ /reboot*:* Restarts the bots service\x1f  ❍ /gitpull*:* Pulls the repo and then restarts the bots service\x1f\x1f *Chatbot:* \x1f  ❍ /listaichats*:* Lists the chats the chatmode is enabled in\x1f \x1f *Debugging and Shell:* \x1f  ❍ /debug <on/off>*:* Logs commands to updates.txt\x1f  ❍ /logs*:* Run this in support group to get logs in pm\x1f  ❍ /eval*:* Self explanatory\x1f  ❍ /sh*:* Runs shell command\x1f  ❍ /shell*:* Runs shell command\x1f  ❍ /clearlocals*:* As the name goes\x1f  ❍ /dbcleanup*:* Removes deleted accs and groups from db\x1f  ❍ /py*:* Runs python code\x1f \x1f *Global Bans:*\x1f  ❍ /gban <id> <reason>*:* Gbans the user, works by reply too#  \x1f  ❍ /ungban*:* Ungbans the user, same usage as gban\x1f  ❍ /gbanlist*:* Outputs a list of gbanned users\x1f\x1f *Global Blue Text*\x1f  ❍ /gignoreblue*:* <word>*:* Globally ignorea bluetext cleaning of saved word across NoinoiRobot.\x1f  ❍ /ungignoreblue*:* <word>*:* Remove said command from global cleaning list\x1f\x1f *NOINOI Core*\x1f *Owner only*\x1f  ❍ /send*:* <module name>*:* Send module\x1f  ❍ /install*:* <reply to a .py>*:* Install module \x1f\x1f *Heroku Settings*\x1f *Owner only*\x1f  ❍ /usage*:* Check your heroku dyno hours remaining.\x1f  ❍ /see var <var>*:* Get your existing varibles, use it only on your private group!\x1f  ❍ /set var <newvar> <vavariable>*:* Add new variable or update existing value variable.\x1f  ❍ /del var <var>*:* Delete existing variable.\x1f  ❍ /logs Get heroku dyno logs.\x1f\x1f 🌸 𝗣𝗢𝗪𝗘𝗗 𝗕𝗬 𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗣𝗟𝗔𝗬𝗘𝗥\x1f"""
 
- *List all special users:*
-  ❍ /dragons*:* Lists all Dragon disasters
-  ❍ /demons*:* Lists all Demon disasters
-  ❍ /tigers*:* Lists all Tigers disasters
-  ❍ /wolves*:* Lists all Wolf disasters
-  ❍ /heroes*:* Lists all Hero Association members
-  ❍ /adddragon*:* Adds a user to Dragon
-  ❍ /adddemon*:* Adds a user to Demon
-  ❍ /addtiger*:* Adds a user to Tiger
-  ❍ /addwolf*:* Adds a user to Wolf
-  ❍ `Add dev doesnt exist, devs should know how to add themselves`
-
- *Ping:*
-  ❍ /ping*:* gets ping time of bot to telegram server
-  ❍ /pingall*:* gets all listed ping times
-
- *Broadcast: (Bot owner only)*
- *Note:* This supports basic markdown
-  ❍ /broadcastall*:* Broadcasts everywhere
-  ❍ /broadcastusers*:* Broadcasts too all users
-  ❍ /broadcastgroups*:* Broadcasts too all groups
-
- *Groups Info:*
-  ❍ /groups*:* List the groups with Name, ID, members count as a txt#  
-  ❍ /leave <ID>*:* Leave the group, ID must have hyphen
-  ❍ /stats*:* Shows overall bot stats
-  ❍ /getchats*:* Gets a list of group names the user has been seen in. Bot owner only
-  ❍ /ginfo username/link/ID*:* Pulls info panel for entire group
-
- *Access control:* 
-  ❍ /ignore*:* Blacklists a user from using the bot entirely
-  ❍ /lockdown <off/on>*:* Toggles bot adding to groups
-  ❍ /notice*:* Removes user from blacklist
-  ❍ /ignoredlist*:* Lists ignored users
-
- *Speedtest:*
-  ❍ /speedtest*:* Runs a speedtest and gives you 2 options to choose from, text or image output
-
- *Module loading:*
-  ❍ /listmodules*:* Lists names of all modules
-  ❍ /load modulename*:* Loads the said module to memory without restarting.
-  ❍ /unload modulename*:* Loads the said module frommemory without restarting memory without restarting the bot 
-
- *Remote commands:*
-  ❍ /rban*:* user group*:* Remote ban
-  ❍ /runban*:* user group*:* Remote un-ban
-  ❍ /rpunch*:* user group*:* Remote punch
-  ❍ /rmute*:* user group*:* Remote mute
-  ❍ /runmute*:* user group*:* Remote un-mute
-
- *Windows self hosted only:*
-  ❍ /reboot*:* Restarts the bots service
-  ❍ /gitpull*:* Pulls the repo and then restarts the bots service
-
- *Chatbot:* 
-  ❍ /listaichats*:* Lists the chats the chatmode is enabled in
- 
- *Debugging and Shell:* 
-  ❍ /debug <on/off>*:* Logs commands to updates.txt
-  ❍ /logs*:* Run this in support group to get logs in pm
-  ❍ /eval*:* Self explanatory
-  ❍ /sh*:* Runs shell command
-  ❍ /shell*:* Runs shell command
-  ❍ /clearlocals*:* As the name goes
-  ❍ /dbcleanup*:* Removes deleted accs and groups from db
-  ❍ /py*:* Runs python code
- 
- *Global Bans:*
-  ❍ /gban <id> <reason>*:* Gbans the user, works by reply too#  
-  ❍ /ungban*:* Ungbans the user, same usage as gban
-  ❍ /gbanlist*:* Outputs a list of gbanned users
-
- *Global Blue Text*
-  ❍ /gignoreblue*:* <word>*:* Globally ignorea bluetext cleaning of saved word across NoinoiRobot.
-  ❍ /ungignoreblue*:* <word>*:* Remove said command from global cleaning list
-
- *NOINOI Core*
- *Owner only*
-  ❍ /send*:* <module name>*:* Send module
-  ❍ /install*:* <reply to a .py>*:* Install module 
-
- *Heroku Settings*
- *Owner only*
-  ❍ /usage*:* Check your heroku dyno hours remaining.
-  ❍ /see var <var>*:* Get your existing varibles, use it only on your private group!
-  ❍ /set var <newvar> <vavariable>*:* Add new variable or update existing value variable.
-  ❍ /del var <var>*:* Delete existing variable.
-  ❍ /logs Get heroku dyno logs.
-
- 🌸 𝗣𝗢𝗪𝗘𝗗 𝗕𝗬 𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗣𝗟𝗔𝗬𝗘𝗥
-"""
 
 __handlers__ = [
     SUDO_HANDLER,

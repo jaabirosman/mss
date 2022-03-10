@@ -12,8 +12,10 @@ PHOTO = "https://telegra.ph/file/4af36e1114f010b951e98.jpg"
 @MEMEK(pattern=("/mhelp"))
 async def awake(event):
   tai = event.sender.first_name
-  LUNA = "** ──「 Basic Guide 」── ** \n\n"
-  LUNA += "• /play **(song title) — To Play the song you requested via YouTube** \n"
+  LUNA = (
+      "** ──「 Basic Guide 」── ** \n\n" +
+      "• /play **(song title) — To Play the song you requested via YouTube** \n"
+  )
   LUNA += "• /search ** (song/video title) – To search for links on YouTube with details** \n"
   LUNA += "• /playlist - **show the list song in queue** \n"
   LUNA += "•/lyric - ** (song name) lyrics scrapper** \n\n"

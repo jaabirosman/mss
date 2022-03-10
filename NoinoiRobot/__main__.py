@@ -67,7 +67,7 @@ def get_readable_time(seconds: int) -> str:
     for x in range(len(time_list)):
         time_list[x] = str(time_list[x]) + time_suffix_list[x]
     if len(time_list) == 4:
-        ping_time += time_list.pop() + ", "
+        ping_time += f'{time_list.pop()}, '
 
     time_list.reverse()
     ping_time += ":".join(time_list)
@@ -365,18 +365,45 @@ def noi_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Music", callback_data="noi_musics"),InlineKeyboardButton("Join", callback_data="noi_join"),InlineKeyboardButton("Auth", callback_data="noi_auth"),],[InlineKeyboardButton("Blacklist", callback_data="noi_blacklist"),InlineKeyboardButton("Ping", callback_data="noi_ping"),InlineKeyboardButton("Lyrics", callback_data="noi_lyrics"),],[InlineKeyboardButton("<<", callback_data="noi_next"),InlineKeyboardButton("📍 Home", callback_data="noi_back"),InlineKeyboardButton(">>", callback_data="noi_next"),],]
             ),
         )
-        
+
     elif query.data == "noi_next":
         query.message.edit_text(
-            text=f"**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**"
-            f"\n\n❍ Hey this feature has many commands, & this feature is knnown as music command.\n❍ this feature is also help you to manage your group \n\n 🌸 𝗣𝗢𝗪𝗘𝗗 𝗕𝗬 𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗣𝗟𝗔𝗬𝗘𝗥",
-            
-            
+            text="**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Theame", callback_data="noi_theame"),InlineKeyboardButton("Server", callback_data="noi_server"),InlineKeyboardButton("Song", callback_data="noi_song"),],[InlineKeyboardButton("Speedtest", callback_data="noi_speed"),InlineKeyboardButton("Stats", callback_data="noi_stats"),InlineKeyboardButton("Assistant", callback_data="noi_assist"),],[InlineKeyboardButton("<<", callback_data="noi_music"),InlineKeyboardButton("📍 Home", callback_data="noi_back"),InlineKeyboardButton(">>", callback_data="noi_music"),],]
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            "Theame", callback_data="noi_theame"
+                        ),
+                        InlineKeyboardButton(
+                            "Server", callback_data="noi_server"
+                        ),
+                        InlineKeyboardButton("Song", callback_data="noi_song"),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            "Speedtest", callback_data="noi_speed"
+                        ),
+                        InlineKeyboardButton(
+                            "Stats", callback_data="noi_stats"
+                        ),
+                        InlineKeyboardButton(
+                            "Assistant", callback_data="noi_assist"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton("<<", callback_data="noi_music"),
+                        InlineKeyboardButton(
+                            "📍 Home", callback_data="noi_back"
+                        ),
+                        InlineKeyboardButton(">>", callback_data="noi_music"),
+                    ],
+                ]
             ),
         )
+
     elif query.data == "noi_back":
         query.message.edit_text(
                 PM_START_TEXT,
@@ -385,182 +412,249 @@ def noi_about_callback(update, context):
                 timeout=60,
                 disable_web_page_preview=False,
         )
-        
+
     elif query.data == "noi_music":
         query.message.edit_text(
-            text=f"**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**"
-            f"\n\n❍ Hey this feature has many commands, & this feature is knnown as music command.\n❍ this feature is also help you to manage your group \n\n 🌸 𝗣𝗢𝗪𝗘𝗗 𝗕𝗬 𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗣𝗟𝗔𝗬𝗘𝗥",
-            
-            
+            text="**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Music", callback_data="noi_musics"),InlineKeyboardButton("Join", callback_data="noi_join"),InlineKeyboardButton("Auth", callback_data="noi_auth"),],[InlineKeyboardButton("Blacklist", callback_data="noi_blacklist"),InlineKeyboardButton("Ping", callback_data="noi_ping"),InlineKeyboardButton("Lyrics", callback_data="noi_lyrics"),],[InlineKeyboardButton("<<", callback_data="noi_next"),InlineKeyboardButton("↪ Back", callback_data="noi_"),InlineKeyboardButton(">>", callback_data="noi_next"),],]
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            "Music", callback_data="noi_musics"
+                        ),
+                        InlineKeyboardButton("Join", callback_data="noi_join"),
+                        InlineKeyboardButton("Auth", callback_data="noi_auth"),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            "Blacklist", callback_data="noi_blacklist"
+                        ),
+                        InlineKeyboardButton("Ping", callback_data="noi_ping"),
+                        InlineKeyboardButton(
+                            "Lyrics", callback_data="noi_lyrics"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton("<<", callback_data="noi_next"),
+                        InlineKeyboardButton("↪ Back", callback_data="noi_"),
+                        InlineKeyboardButton(">>", callback_data="noi_next"),
+                    ],
+                ]
             ),
         )
+
     elif query.data == "noi_musics":
         query.message.edit_text(
-            text=f"**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**"
-            f"\n\n❍ /play : for play music on voice chat."
-            f"\n\n❍ /pause : for pause music on voice chat."
-            f"\n\n❍ /resume : for resume music on voice chat."
-            f"\n\n❍ /skip : for skip music on voice chat."
-            f"\n\n❍ /mute : for mute music on voice chat."
-            f"\n\n❍ /unmute : unmute play music on voice chat."
-            f"\n\n❍ /end : for end music on voice chat.\n\n 🌸 𝗣𝗢𝗪𝗘𝗗 𝗕𝗬 𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗣𝗟𝗔𝗬𝗘𝗥",
-            
+            text="**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="↪ Back", callback_data="noi_music"),]]
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="↪ Back", callback_data="noi_music"
+                        ),
+                    ]
+                ]
             ),
-        ) 
+        )
+
     elif query.data == "noi_join":
         query.message.edit_text(
-            text=f"**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**"
-            f"\n\n❍ /join : for join the voice chat."
-            f"\n\n❍ /leave : for leave the voice chat."
-            f"\n\n❍ /leaveassistant : for leave assistant from voice chat.\n\n 🌸 𝗣𝗢𝗪𝗘𝗗 𝗕𝗬 𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗣𝗟𝗔𝗬𝗘𝗥",
-            
+            text="**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="↪ Back", callback_data="noi_music"),]]
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="↪ Back", callback_data="noi_music"
+                        ),
+                    ]
+                ]
             ),
-        ) 
+        )
+
     elif query.data == "noi_auth":
         query.message.edit_text(
-            text=f"**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**"
-            f"\n\n❍ /join : for join the voice chat."
-            f"\n\n❍ /leave : for leave the voice chat."
-            f"\n\n❍ /leaveassistant : for leave assistant from voice chat.\n\n 🌸 𝗣𝗢𝗪𝗘𝗗 𝗕𝗬 𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗣𝗟𝗔𝗬𝗘𝗥",
-            
+            text="**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="↪ Back", callback_data="noi_music"),]]
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="↪ Back", callback_data="noi_music"
+                        ),
+                    ]
+                ]
             ),
-        ) 
+        )
+
     elif query.data == "noi_blacklist":
         query.message.edit_text(
-            text=f"**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**"
-            f"\n\n❍ /chatbl : for blacklist any chat."
-            f"\n\n❍ /charwl : for remove blacklist chats."
-            f"\n\n❍ /blchats : for cheak black list chats.\n\n 🌸 𝗣𝗢𝗪𝗘𝗗 𝗕𝗬 𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗣𝗟𝗔𝗬𝗘𝗥",
-            
+            text="**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="↪ Back", callback_data="noi_music"),]]
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="↪ Back", callback_data="noi_music"
+                        ),
+                    ]
+                ]
             ),
-        ) 
+        )
+
     elif query.data == "noi_ping":
         query.message.edit_text(
-            text=f"**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**"
-            f"\n\n❍ /ping : for cheak bot working or dead.\n\n 🌸 𝗣𝗢𝗪𝗘𝗗 𝗕𝗬 𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗣𝗟𝗔𝗬𝗘𝗥",
-            
+            text="**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="↪ Back", callback_data="noi_music"),]]
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="↪ Back", callback_data="noi_music"
+                        ),
+                    ]
+                ]
             ),
-        ) 
+        )
+
     elif query.data == "noi_lyrics":
         query.message.edit_text(
-            text=f"**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**"
-            f"\n\n❍ /lyrics : for get song lyrics.\n\n 🌸 𝗣𝗢𝗪𝗘𝗗 𝗕𝗬 𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗣𝗟𝗔𝗬𝗘𝗥",
-            
+            text="**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="↪ Back", callback_data="noi_music"), ]]
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="↪ Back", callback_data="noi_music"
+                        ),
+                    ]
+                ]
             ),
         )
+
     elif query.data == "noi_theame":
         query.message.edit_text(
-            text=f"**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**"
-            f"\n\n❍ /theme : - Set a theme for thumbnails"
-            f"\n\n❍ /settheame : - Set a theme for thumbnails.\n\n 🌸 𝗣𝗢𝗪𝗘𝗗 𝗕𝗬 𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗣𝗟𝗔𝗬𝗘𝗥",
-            
+            text="**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="↪ Back", callback_data="noi_next"),]]
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="↪ Back", callback_data="noi_next"
+                        ),
+                    ]
+                ]
             ),
         )
+
     elif query.data == "noi_server":
         query.message.edit_text(
-            text=f"**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**"
-            f"\n\n❍ /logs : 100 logs line"
-            f"\n\n❍ /vars : config vars from heroku"
-            f"\n\n❍ /delvars : del any vars or env"
-            f"\n\n❍ /setvars : set any var or update"
-            f"\n\n❍ /usage : get dyno usage"
-            f"\n\n❍ /update : update your bot"
-            f"\n\n❍ /restart : restart your bot.\n\n 🌸 𝗣𝗢𝗪𝗘𝗗 𝗕𝗬 𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗣𝗟𝗔𝗬𝗘𝗥",
-            
+            text="**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="↪ Back", callback_data="noi_next"),]]
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="↪ Back", callback_data="noi_next"
+                        ),
+                    ]
+                ]
             ),
         )
+
     elif query.data == "noi_song":
         query.message.edit_text(
-            text=f"**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**"
-            f"\n\n❍ /song : - for download song.\n\n 🌸 𝗣𝗢𝗪𝗘𝗗 𝗕𝗬 𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗣𝗟𝗔𝗬𝗘𝗥",
-            
+            text="**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="↪ Back", callback_data="noi_next"),]]
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="↪ Back", callback_data="noi_next"
+                        ),
+                    ]
+                ]
             ),
         )
+
     elif query.data == "noi_speed":
         query.message.edit_text(
-            text=f"**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**"
-            f"\n\n❍ /speedtest : - for cheak speed of bot.\n\n 🌸 𝗣𝗢𝗪𝗘𝗗 𝗕𝗬 𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗣𝗟𝗔𝗬𝗘𝗥",
-            
+            text="**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="↪ Back", callback_data="noi_next"),]]
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="↪ Back", callback_data="noi_next"
+                        ),
+                    ]
+                ]
             ),
         )
+
     elif query.data == "noi_stats":
         query.message.edit_text(
-            text=f"**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**"
-            f"\n\n❍ /stats : - for cheak stats of bot.\n\n 🌸 𝗣𝗢𝗪𝗘𝗗 𝗕𝗬 𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗣𝗟𝗔𝗬𝗘𝗥",
-            
+            text="**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="↪ Back", callback_data="noi_next"),]]
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="↪ Back", callback_data="noi_next"
+                        ),
+                    ]
+                ]
             ),
         )
+
     elif query.data == "noi_assist":
         query.message.edit_text(
-            text=f"**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**"
-            f"\n\n❍ /setassistant : - for set the bot assistant."
-            f"\n\n❍ /changeassistant : - for change the bot assistant.\n\n 🌸 𝗣𝗢𝗪𝗘𝗗 𝗕𝗬 𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗣𝗟𝗔𝗬𝗘𝗥",
-            
+            text="**──𝗡𝗢𝗜𝗡𝗢𝗜 𝗠𝗨𝗦𝗜𝗖 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚──**",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="↪ Back", callback_data="noi_next"),]]
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="↪ Back", callback_data="noi_next"
+                        ),
+                    ]
+                ]
             ),
         )
+
     elif query.data == "noi_about":
         query.message.edit_text(
-            text=f" 🧩 Hear the noinoi page."
-            f"\n\n❍ Hey welcome hear to noinoi's private page we are saying big thanks to you for using our bot."
-            f"\n\n❍ Our bot is superfast with smooth music player with advance new featurs"
-            f"\n\n❍ We remove no need space up plugins & noinoi is now is stable and easily deploy in 2 min."
-            f"\n\n❍ Today i am sharing the source code of this bot with"
-            f"\n\n 💡 Powerd by @BAZIGARXD",
+            text=" 🧩 Hear the noinoi page.",
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="Noinoi's repo 📂", url="https://github.com/TeamNoinoi/noinoirobot"),],
-                 [InlineKeyboardButton(text="Back", callback_data="noi_back"),]]
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="Noinoi's repo 📂",
+                            url="https://github.com/TeamNoinoi/noinoirobot",
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="Back", callback_data="noi_back"
+                        ),
+                    ],
+                ]
             ),
         )
 @run_async
@@ -662,25 +756,24 @@ def send_settings(chat_id, user_id, user=False):
                 "Sepertinya tidak ada pengaturan khusus pengguna yang tersedia :'(",
                 parse_mode=ParseMode.MARKDOWN,
             )
+    elif CHAT_SETTINGS:
+        chat_name = dispatcher.bot.getChat(chat_id).title
+        dispatcher.bot.send_message(
+            user_id,
+            text="Which module would you like to check {}'s settings for?".format(
+                chat_name
+            ),
+            reply_markup=InlineKeyboardMarkup(
+                paginate_modules(0, CHAT_SETTINGS, "stngs", chat=chat_id)
+            ),
+        )
     else:
-        if CHAT_SETTINGS:
-            chat_name = dispatcher.bot.getChat(chat_id).title
-            dispatcher.bot.send_message(
-                user_id,
-                text="Which module would you like to check {}'s settings for?".format(
-                    chat_name
-                ),
-                reply_markup=InlineKeyboardMarkup(
-                    paginate_modules(0, CHAT_SETTINGS, "stngs", chat=chat_id)
-                ),
-            )
-        else:
-            dispatcher.bot.send_message(
-                user_id,
-                "Seems like there aren't any chat settings available :'(\nSend this "
-                "in a group chat you're admin in to find its current settings!",
-                parse_mode=ParseMode.MARKDOWN,
-            )
+        dispatcher.bot.send_message(
+            user_id,
+            "Seems like there aren't any chat settings available :'(\nSend this "
+            "in a group chat you're admin in to find its current settings!",
+            parse_mode=ParseMode.MARKDOWN,
+        )
 @run_async
 def settings_button(update: Update, context: CallbackContext):
     query = update.callback_query
@@ -765,29 +858,28 @@ def get_settings(update: Update, context: CallbackContext):
     user = update.effective_user  # type: Optional[User]
     msg = update.effective_message  # type: Optional[Message]
 
-    if chat.type != chat.PRIVATE:
-        if is_user_admin(chat, user.id):
-            text = "Click here to get this chat's settings, as well as yours."
-            msg.reply_text(
-                text,
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(
-                                text="Settings",
-                                url="t.me/{}?start=stngs_{}".format(
-                                    context.bot.username, chat.id
-                                ),
-                            )
-                        ]
-                    ]
-                ),
-            )
-        else:
-            text = "Click here to check your settings."
-
-    else:
+    if chat.type == chat.PRIVATE:
         send_settings(chat.id, user.id, True)
+
+    elif is_user_admin(chat, user.id):
+        text = "Click here to get this chat's settings, as well as yours."
+        msg.reply_text(
+            text,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="Settings",
+                            url="t.me/{}?start=stngs_{}".format(
+                                context.bot.username, chat.id
+                            ),
+                        )
+                    ]
+                ]
+            ),
+        )
+    else:
+        text = "Click here to check your settings."
 
 @run_async
 def donate(update: Update, context: CallbackContext):
@@ -894,16 +986,16 @@ def main():
         LOGGER.info("Using long polling.")
         updater.start_polling(timeout=15, read_latency=4, clean=True)
 
-    if len(argv) not in (1, 3, 4):
-        telethn.disconnect()
-    else:
+    if len(argv) in {1, 3, 4}:
         telethn.run_until_disconnected()
 
+    else:
+        telethn.disconnect()
     updater.idle()
 
 
 if __name__ == "__main__":
-    LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
+    LOGGER.info(f"Successfully loaded modules: {str(ALL_MODULES)}")
     telethn.start(bot_token=TOKEN)
     pbot.start()
     main()
